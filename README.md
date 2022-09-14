@@ -14,8 +14,7 @@ URL Shortener is basically simple web app which shorten your long URL, Similar t
 ```
 
 docker pull image-name
-docker build -t image-name .
-docker run -dp 8000:8000 image-name 
+docker run -dp 8000:8000 image-name/image-id 
 
 ```
 
