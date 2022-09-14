@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 const shortid = require("shortid")
 
 const shortUrlSchema = new Schema({

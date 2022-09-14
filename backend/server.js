@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 connectDB()
 
 app.get('/', async (req, res) => {
-    const shortUrls = await ShortUrl.find()
+    const shortUrls = await ShortUrl.find().sort('-1')
     res.json({ shortUrls: shortUrls })
   })
   

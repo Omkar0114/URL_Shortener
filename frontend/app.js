@@ -32,11 +32,10 @@ window.addEventListener('click', (e) =>{
 })
 
 button.addEventListener('click', () => {
-    console.log(urls)
+    
     fetch('http://localhost:8000/shortUrls', {
         method: "POST",
         headers: {
-            'Accept': 'application/json',
             'Content-Type': "application/json"
         },
         body: JSON.stringify({fullUrl: urlInput.value.toString()})
