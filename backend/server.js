@@ -6,6 +6,7 @@ const ShortUrl = require("./models/shortUrl")
 const app = express();
 
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 const PORT = process.env.PORT || 5000;
 
@@ -17,6 +18,13 @@ app.get('/', async (req, res) => {
   })
   
   app.post('/shortUrls', async (req, res) => {
+    const url = await ShortUrl.findOne({originalUrl: req.body.fullUrl});
+
+    if(url){
+        res.json({url})
+        return;
+    }
+
     await ShortUrl.create({ originalUrl: req.body.fullUrl })
   
     res.redirect('/')
