@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./connectDB/db');
 const ShortUrl = require("./models/shortUrl")
+const path = require('path')
 const cors = require('cors')
  require('dotenv').config()
  
@@ -10,11 +11,17 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+app.use(express.static(path.join(__dirname, 'build')))
+
 const PORT = process.env.PORT || 5000;
 
 connectDB()
 
-app.get('/', async (req, res) => {
+app.get('/', async(req,res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+})
+
+app.get('/shortUrls', async (req, res) => {
     const shortUrls = await ShortUrl.find().sort('-1')
     res.json({ shortUrls: shortUrls })
   })

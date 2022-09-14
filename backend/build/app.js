@@ -5,7 +5,7 @@ const tableBody = document.getElementById('table-body')
 let urls = []
 const BACKEND_URL = 'https://url-shortener-omkar.herokuapp.com'
 
-fetch(`${BACKEND_URL}/shortUrls`).then(res => res.json()).then(data => {
+fetch(`${BACKEND_URL}/`).then(res => res.json()).then(data => {
     urls = data.shortUrls;
     
     data.shortUrls.forEach(urlObj => {
