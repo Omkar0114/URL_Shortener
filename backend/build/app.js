@@ -3,9 +3,9 @@ const urlInput = document.getElementById('url-input')
 const tableBody = document.getElementById('table-body')
 
 let urls = []
-const BACKEND_URL = 'https://url-shortener-omkar.herokuapp.com'
+const BACKEND_URL = 'https://url-sh-om.herokuapp.com'
 
-fetch(`${BACKEND_URL}/`).then(res => res.json()).then(data => {
+fetch(`${BACKEND_URL}/shortUrls`).then(res => res.json()).then(data => {
     urls = data.shortUrls;
     
     data.shortUrls.forEach(urlObj => {
@@ -15,10 +15,10 @@ fetch(`${BACKEND_URL}/`).then(res => res.json()).then(data => {
         tableCell2.classList.add('shortened-url')
         
         if(urlObj.originalUrl.length > 50){
-            urlObj.originalUrl = urlObj.originalUrl.slice(0,41) + '...'
+            urlObj.originalUrl = urlObj.originalUrl.slice(0,71) + '...'
         }
         tableCell1.innerText = urlObj.originalUrl;
-        tableCell2.innerText = urlObj.shortenedUrl;
+        tableCell2.innerText =  urlObj.shortenedUrl;
         tableRow.appendChild(tableCell1)
         tableRow.appendChild(tableCell2)
         tableBody.appendChild(tableRow)
@@ -37,11 +37,12 @@ button.addEventListener('click', () => {
     fetch(`${BACKEND_URL}/shortUrls`, {
         method: "POST",
         headers: {
+            'Accept': 'application/json',
             'Content-Type': "application/json"
         },
         body: JSON.stringify({fullUrl: urlInput.value.toString()})
     }).then(res => res.json()).then((data) => {
-        if(!data || !data.url){
+        if(data.success){
             alert("URL created successfully");
             window.location.reload()
             urlInput.value = ''

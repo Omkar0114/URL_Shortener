@@ -3,11 +3,22 @@ const connectDB = require('./connectDB/db');
 const ShortUrl = require("./models/shortUrl")
 const path = require('path')
 const cors = require('cors')
- require('dotenv').config()
+require('dotenv').config()
  
 const app = express();
+const corsOpts = {
+  origin: '*',
 
-app.use(cors())
+  methods: [
+    'GET',
+    'POST',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+}
+app.use(cors(corsOpts))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
@@ -17,7 +28,7 @@ const PORT = process.env.PORT || 5000;
 
 connectDB()
 
-app.get('/', async(req,res) => {
+app.get('/', async (req,res) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
 
@@ -36,7 +47,7 @@ app.get('/shortUrls', async (req, res) => {
 
     await ShortUrl.create({ originalUrl: req.body.fullUrl })
   
-    res.redirect('/')
+    res.json({success: true})
   })
   
   app.get('/:shortUrl', async (req, res) => {
