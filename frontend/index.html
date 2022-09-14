@@ -5,14 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>URL Shortener</title>
 </head>
 <body>
-    <input type="text" id='url-input'/>
-    <button id="button">Shorten URL</button>
-    <div id="url-container">
-        <div id="original-url"></div>
-        <div id="shortened-url"></div>
+    <div class="input-container">
+        <input type="text" id='url-input' placeholder="Enter URL here"/>
+        <button id="button">Shorten URL</button>
     </div>
+    <table >
+        <thead>
+          <tr>
+            <th style="text-align: left; padding-left: 1rem;">Original URL</th>
+            <th>Shortened URL</th>
+          </tr>
+         </thead>
+         <tbody id="table-body">
+        </tbody>
+      </table>
 </body>
 </html>
