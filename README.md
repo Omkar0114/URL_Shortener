@@ -9,7 +9,6 @@ URL Shortener is basically simple web app which shorten your long URL, Similar t
 
 
 # Steps to run Docker image on your system:
-- Go to your directory where Dockerfile is located and execute the commands given below 
 
 ```
 
